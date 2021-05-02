@@ -23,6 +23,7 @@ macro_rules! mersenne_twister {
                 ret.seed(seed);
                 ret
             }
+
             pub fn seed(&mut self, seed: $Type) {
                 self.index = $N;
                 self.state[0] = seed;
@@ -31,6 +32,7 @@ macro_rules! mersenne_twister {
                     self.state[i] = ($F * (prev ^ (prev >> ($W - 2))) + (i as u128)) as $Type;
                 }
             }
+
             // Helper function for the twist method
             fn compute_state(curr: $Type, next: $Type, next_m: $Type) -> $Type {
                 let x = (curr & Self::MASK_HIGH) + (next & Self::MASK_LOW);
@@ -42,6 +44,7 @@ macro_rules! mersenne_twister {
                 let ret = next_m ^ xa;
                 ret
             }
+
             fn twist(&mut self) {
                 // Loops are unrolled to avoid modulo operation
                 for i in 0..($N - $M) {
@@ -56,7 +59,8 @@ macro_rules! mersenne_twister {
                                                          self.state[$M - 1]);
                 self.index = 0;
             }
-            pub fn get_number(&mut self) -> $Type {
+
+            pub fn next(&mut self) -> $Type {
                 if self.index >= $N {
                     self.twist();
                 }
