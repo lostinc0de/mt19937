@@ -1,8 +1,9 @@
 pub mod mt19937;
+pub use self::mt19937::{MT19937, MT19937_64};
 
 #[cfg(test)]
 mod tests {
-    use crate::mt19937::{MT19937, MT19937_64};
+    use crate::{MT19937, MT19937_64};
 
     #[test]
     fn test_mt19937() {
