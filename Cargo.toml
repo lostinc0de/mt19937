@@ -4,3 +4,6 @@ version = "0.1.0"
 authors = ["lostincode"]
 edition = "2018"
 license = "MIT"
+description = "Implementation of the Mersenne Twister PRNG in Rust"
+readme = "README.md"
+repository = "https://github.com/lostinc0de/prng_mt"
